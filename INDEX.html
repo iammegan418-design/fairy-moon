@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2026 中秋組合</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#3A2240; --plum-deep:#2A1830; --ink:#241626;
+  --paper:#F4EFF3; --card:#FFFFFF; --line:#E7DDE7; --muted:#8C7C8E;
+  --rose:#B24A70; --rose-soft:#FBEEF3;
+  --jade:#2C7B70; --jade-soft:#E9F4F2;
+  --gold:#8A6120;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--plum-deep)}
+body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  background:var(--paper);color:var(--ink);max-width:520px;margin:0 auto;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+header{background:var(--plum);color:#fff;padding:26px 22px 20px;border-radius:0 0 26px 26px}
+.brand{font-size:12px;letter-spacing:.28em;color:#C9A9CE;margin-bottom:9px}
+h1{font-family:"Noto Serif TC",serif;font-weight:700;font-size:31px;line-height:1.2;letter-spacing:.02em}
+.dates{display:inline-block;margin-top:11px;font-size:13px;font-weight:500;color:#F0DDBF;
+  background:rgba(217,164,65,.18);border:1px solid rgba(217,164,65,.4);padding:6px 13px;border-radius:999px;font-variant-numeric:tabular-nums}
+
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:16px 16px 0;background:#E6DBE6;padding:5px;border-radius:15px}
+.tab{font-family:inherit;font-size:15px;font-weight:700;color:var(--muted);background:none;border:none;padding:12px;border-radius:11px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--card);color:var(--plum);box-shadow:0 1px 3px rgba(58,34,64,.1)}
+
+.sect{margin:24px 20px 0;font-size:13px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.sect span{font-weight:400;letter-spacing:0}
+
+.nick{display:flex;align-items:center;gap:10px;margin:12px 16px;padding:6px 8px 6px 17px;
+  background:var(--card);border:1.5px solid var(--line);border-radius:14px}
+.nick label{font-size:14px;color:var(--muted);flex:none}
+.nick input{flex:1;min-width:0;font-family:inherit;font-size:16px;font-weight:600;color:var(--ink);
+  border:none;background:none;padding:11px 8px;outline:none}
+
+.card{margin:12px 16px;background:var(--card);border:1.5px solid var(--line);border-radius:18px;overflow:hidden}
+.card.on{border-color:currentColor}
+.card.rose.on{border-color:var(--rose)}
+.card.jade.on{border-color:var(--jade)}
+.head{display:flex;align-items:center;gap:9px;padding:16px 18px 0}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.head b{font-size:17.5px;font-weight:700;letter-spacing:.02em}
+.rose .dot{background:var(--rose)}
+.jade .dot{background:var(--jade)}
+.items{padding:9px 18px 0;font-size:14.5px;line-height:1.85;color:#4A3A4C}
+.gift{display:flex;gap:8px;align-items:baseline;margin:11px 18px 0;padding:10px 13px;border-radius:12px;font-size:14px;font-weight:500}
+.gift small{font-size:11.5px;font-weight:700;letter-spacing:.08em;padding:2px 7px;border-radius:6px;color:#fff;flex:none}
+.rose .gift{background:var(--rose-soft);color:var(--rose)}
+.rose .gift small{background:var(--rose)}
+.jade .gift{background:var(--jade-soft);color:var(--jade)}
+.jade .gift small{background:var(--jade)}
+
+.buy{display:flex;align-items:flex-end;gap:12px;padding:14px 12px 14px 18px}
+.buy .p{flex:1;min-width:0}
+.buy .vip{font-size:40px;font-weight:900;letter-spacing:-.025em;font-variant-numeric:tabular-nums;line-height:1}
+.buy .vip i{font-style:normal;font-size:23px;font-weight:700;margin-right:3px;vertical-align:4px;opacity:.55}
+.rose .vip{color:var(--rose)}
+.jade .vip{color:var(--jade)}
+.buy .orig{display:block;font-size:12.5px;color:var(--muted);margin-top:5px;font-variant-numeric:tabular-nums}
+.buy .orig s{opacity:.8}
+
+.stepper{display:flex;align-items:center;gap:2px;flex:none}
+.stepper button{width:38px;height:38px;font-size:20px;line-height:1;font-family:inherit;color:var(--plum);
+  background:var(--paper);border:none;border-radius:11px;cursor:pointer}
+.stepper button:disabled{color:#D3C8D4;cursor:default}
+.stepper output{min-width:34px;text-align:center;font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+
+.note{margin:2px 20px 0;font-size:12.5px;color:var(--muted);line-height:1.75}
+
+details{margin:8px 16px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;overflow:hidden}
+details[open]{border-color:#D8C9D8}
+summary{list-style:none;cursor:pointer;padding:15px 18px;font-size:15.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+summary::-webkit-details-marker{display:none}
+summary .cnt{margin-left:auto;font-size:12.5px;font-weight:700;color:#fff;background:var(--rose);
+  border-radius:999px;padding:2px 9px;font-variant-numeric:tabular-nums}
+summary .cnt[hidden]{display:none}
+summary .arw{color:var(--muted);font-size:13px;font-weight:400;transition:transform .15s}
+details[open] summary .arw{transform:rotate(90deg)}
+
+.prod{display:flex;align-items:center;gap:10px;padding:11px 12px 11px 18px;border-top:1px solid var(--paper)}
+.prod .n{flex:1;min-width:0}
+.prod .n b{display:block;font-size:14.5px;font-weight:600;line-height:1.4}
+.prod .n b em{font-style:normal;font-weight:400;color:var(--muted);font-size:12.5px}
+.prod .n span{display:block;font-size:13px;margin-top:3px;font-variant-numeric:tabular-nums;color:var(--rose);font-weight:700}
+.prod .n span s{color:var(--muted);font-weight:400;margin-left:6px}
+.prod .n span.flat{color:var(--muted);font-weight:500}
+.prod.on{background:var(--rose-soft)}
+
+.total{margin:18px 16px 0;background:var(--plum);color:#fff;border-radius:20px;padding:19px 20px 17px}
+.total .lab{font-size:13.5px;color:#C9A9CE}
+.total .num{display:block;width:100%;text-align:left;font-family:inherit;background:none;border:none;
+  padding:2px 0 0;cursor:pointer;color:#fff;font-size:54px;font-weight:900;letter-spacing:-.025em;font-variant-numeric:tabular-nums}
+.total .num i{font-style:normal;font-size:29px;font-weight:700;color:#C9A9CE;margin-right:4px;vertical-align:7px}
+.total .num[disabled]{cursor:default;color:#6E5474}
+.total .num[disabled] i{color:#6E5474}
+.tap{margin-top:5px;font-size:12.5px;color:#B99CBE;font-variant-numeric:tabular-nums}
+.saveline{display:flex;justify-content:space-between;margin-top:13px;padding-top:13px;border-top:1px solid rgba(255,255,255,.16);
+  font-size:14px;color:#E8D9EB;font-variant-numeric:tabular-nums}
+.saveline b{color:#F5D48A;font-size:17px;font-weight:900}
+
+.actions{display:flex;gap:8px;margin:10px 16px 0}
+.act{flex:1;font-family:inherit;font-size:14.5px;font-weight:700;padding:14px 8px;border-radius:14px;cursor:pointer;
+  background:var(--card);color:var(--plum);border:1.5px solid var(--line)}
+.act.main{background:var(--plum);color:#fff;border-color:var(--plum)}
+.act:disabled{background:var(--card);color:#C3B6C4;border-color:var(--line);cursor:default}
+
+.earn{display:flex;align-items:center;gap:14px;margin:10px 16px;padding:15px 17px;background:var(--card);border:1.5px solid var(--line);border-radius:16px}
+.earn .info{flex:1;min-width:0}
+.earn .info b{display:block;font-size:16px;font-weight:700}
+.earn .info span{display:block;font-size:12.5px;color:var(--muted);margin-top:3px;font-variant-numeric:tabular-nums}
+.earn .val{font-family:inherit;background:none;border:none;cursor:pointer;text-align:right;padding:0}
+.earn .val em{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-bottom:-1px}
+.earn .val b{font-size:29px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.earn.rose .val b{color:var(--rose)}
+.earn.jade .val b{color:var(--jade)}
+
+.levels{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 16px 4px}
+.level{font-family:inherit;font-size:14.5px;font-weight:500;color:var(--plum);background:var(--card);
+  border:1.5px solid var(--line);border-radius:13px;padding:13px 8px;cursor:pointer;transition:background .12s,color .12s,border-color .12s}
+.level[aria-pressed="true"]{background:var(--plum);border-color:var(--plum);color:#fff;font-weight:700}
+
+.row{display:flex;align-items:center;gap:12px;margin:10px 16px;padding:12px 12px 12px 17px;
+  background:var(--card);border:1.5px solid var(--line);border-radius:16px}
+.row .info{flex:1;min-width:0}
+.row .info b{display:block;font-size:16px;font-weight:700}
+.row .info span{display:block;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:2px}
+.row.zero .info b,.row.zero .info span{opacity:.5}
+
+footer{margin-top:34px;padding:20px 20px 30px;text-align:center;font-size:11.5px;color:#A897AA;line-height:1.9;border-top:1px solid var(--line)}
+[hidden]{display:none}
+button:focus-visible,summary:focus-visible,input:focus-visible{outline:2.5px solid var(--rose);outline-offset:2px}
+#toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,14px);background:var(--ink);color:#fff;
+  font-size:15px;font-weight:500;padding:12px 20px;border-radius:999px;opacity:0;pointer-events:none;
+  transition:opacity .18s,transform .18s;white-space:nowrap;font-variant-numeric:tabular-nums}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">仙女團隊</div>
+  <h1>2026 中秋組合 🥮</h1>
+  <div class="dates">活動期間 9/17（四）－ 10/5（一）</div>
+</header>
+
+<div class="tabs" role="tablist">
+  <button class="tab" id="tabA" role="tab" aria-selected="true">客人方案</button>
+  <button class="tab" id="tabB" role="tab" aria-selected="false">團隊版</button>
+</div>
+
+<!-- ===== 客人方案 ===== -->
+<section id="paneA">
+  <div class="nick">
+    <label for="nickname">稱呼</label>
+    <input id="nickname" value="寶寶" maxlength="12" autocomplete="off">
+  </div>
+
+  <div class="sect">中秋組合</div>
+  <div id="combos"></div>
+
+  <div class="sect">加購商品 <span>· 直接用 VIP 價</span></div>
+  <p class="note">中秋組合以零售價計已超過 $4,000，加購同時或不同主商品都享 VIP 價。體驗包不打折，也不計入門檻。</p>
+  <div id="addons"></div>
+
+  <div class="total">
+    <div class="lab" id="cLab">應付總金額</div>
+    <button class="num" id="cNum"><i>$</i>0</button>
+    <div class="tap" id="cTap">先選組合</div>
+    <div class="saveline" id="cSave" hidden>
+      <span>商品原價共 <span id="cOrig">$0</span></span>
+      <span>省下 <b id="cDiff">$0</b></span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="act main" id="cCopy" disabled>複製方案給客人</button>
+    <button class="act" id="cReset" disabled>清空</button>
+  </div>
+</section>
+
+<!-- ===== 團隊版 ===== -->
+<section id="paneB" hidden>
+  <div class="levels" id="levels"></div>
+
+  <div class="sect">客人買一組，你賺多少</div>
+  <div id="earns"></div>
+
+  <div class="sect">他叫幾組，你要付多少</div>
+  <div id="rows"></div>
+
+  <div class="total">
+    <div class="lab" id="tLab">應付總金額</div>
+    <button class="num" id="tNum"><i>$</i>0</button>
+    <div class="tap" id="tTap">先選組數</div>
+  </div>
+
+  <div class="actions">
+    <button class="act" id="tCopy" disabled>複製明細</button>
+    <button class="act" id="tReset" disabled>清空</button>
+  </div>
+  <p class="note" style="margin-top:14px">此頁只算中秋組合的成本。加購商品的進貨成本還沒建進來，需要的話再給我一份。</p>
+</section>
+
+<footer>巧穎開發製作　提供仙女團隊使用</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const COMBOS = [
+  { label:"纖體組合", cls:"rose", price:3840, orig:12230,
+    items:"纖纖飲2盒＋纖飄錠1盒", gift:"纖酵素正貨1盒" },
+  { label:"美肌組合", cls:"jade", price:3560, orig:5340,
+    items:"水光錠2盒＋面膜1盒", gift:"小白瓶身體精華油" }
+];
+const LEVELS = [
+  { name:"實習加盟",        cost:[3480,3070] },
+  { name:"三級零售加盟",     cost:[2970,2660] },
+  { name:"三級輔導督導加盟", cost:[2865,2565] },
+  { name:"二級輔導督導加盟", cost:[2640,2290] }
+];
+const GROUPS = [
+  { cat:"體重管理系列", list:[
+    {n:"纖纖飲X",u:"14入/盒",r:1480,v:1280},
+    {n:"纖飄錠",u:"60錠/盒",r:1480,v:1280},
+    {n:"雪花紫纖飲",u:"14包/盒",r:990,v:830},
+    {n:"爆纖錠",u:"120錠/罐",r:880,v:740},
+    {n:"植萃纖酵宿",u:"60錠/盒",r:990,v:830},
+    {n:"肽纖飲 可可／奶茶風味",u:"10入/盒",r:990,v:830},
+    {n:"爆纖錠 體驗包",u:"30錠/包",r:240,v:240,t:1},
+    {n:"植萃纖酵宿 體驗包",u:"10錠/包",r:190,v:190,t:1}
+  ]},
+  { cat:"機能保健系列", list:[
+    {n:"複方金盞花葉黃素EX飲",u:"12入/盒",r:1080,v:900},
+    {n:"金盞花葉黃素高鈣晶亮凍",u:"10入/盒",r:680,v:600},
+    {n:"高機能益生菌",u:"30包/盒",r:1280,v:1100},
+    {n:"9國英雄TURBO極速錠",u:"20錠/包",r:680,v:600},
+    {n:"療肺草正冠茶",u:"20包/盒",r:990,v:830},
+    {n:"固樂纖",u:"60錠/盒",r:1680,v:1480}
+  ]},
+  { cat:"美肌保養", list:[
+    {n:"水光錠",u:"60顆/盒",r:1680,v:1480},
+    {n:"水光繃帶面膜 精裝盒",u:"5片/盒",r:700,v:600},
+    {n:"雪聚露",u:"120ml/瓶",r:1280,v:1100},
+    {n:"婕肌零洗卸凝膠",u:"200ml/瓶",r:990,v:830},
+    {n:"精純玻尿酸保濕原液",u:"30ml/瓶",r:990,v:830},
+    {n:"婕肌零 體驗包",u:"7ml/包",r:40,v:40,t:1}
+  ]},
+  { cat:"美體美髮", list:[
+    {n:"急救小白瓶",u:"100ml/瓶",r:1280,v:1100},
+    {n:"積雪草護手霜",u:"50ml/支",r:680,v:600},
+    {n:"法樂蓬洗髮露",u:"500ml/瓶",r:1280,v:1100},
+    {n:"法樂蓬養髮原液",u:"30ml/瓶",r:1080,v:900},
+    {n:"法樂蓬洗髮露 體驗包",u:"8ml/包",r:30,v:30,t:1}
+  ]}
+];
+
+const fmt = n => n.toLocaleString("en-US");
+let cQty = [0,0];
+const aQty = {};
+let cur = 0, tQty = [0,0];
+
+/* ---- 分頁 ---- */
+const tabA = document.getElementById("tabA"), tabB = document.getElementById("tabB");
+function tab(a){
+  tabA.setAttribute("aria-selected", a);
+  tabB.setAttribute("aria-selected", !a);
+  document.getElementById("paneA").hidden = !a;
+  document.getElementById("paneB").hidden = a;
+  window.scrollTo({top:0});
+}
+tabA.onclick = () => tab(true);
+tabB.onclick = () => tab(false);
+
+/* ---- 客人：組合卡 ---- */
+const combosEl = document.getElementById("combos");
+COMBOS.forEach((c,i) => {
+  const el = document.createElement("div");
+  el.className = "card " + c.cls;
+  el.innerHTML =
+    '<div class="head"><span class="dot"></span><b>' + c.label + '</b></div>' +
+    '<div class="items">' + c.items + '</div>' +
+    '<div class="gift"><small>贈</small><span>' + c.gift + '</span></div>' +
+    '<div class="buy"><div class="p">' +
+      '<div class="vip"><i>$</i>' + fmt(c.price) + '</div>' +
+      '<span class="orig">限時優惠VIP價　<s>原價 $' + fmt(c.orig) + '</s></span>' +
+    '</div><div class="stepper">' +
+      '<button data-s="-1" aria-label="' + c.label + ' 減少">−</button><output>0</output>' +
+      '<button data-s="1" aria-label="' + c.label + ' 增加">＋</button>' +
+    '</div></div>';
+  el.querySelectorAll("[data-s]").forEach(b => {
+    b.onclick = () => { cQty[i] = Math.min(99, Math.max(0, cQty[i] + (+b.dataset.s))); renderC(); };
+  });
+  combosEl.appendChild(el);
+});
+
+/* ---- 客人：加購 ---- */
+const addonsEl = document.getElementById("addons");
+GROUPS.forEach((g,gi) => {
+  const d = document.createElement("details");
+  d.innerHTML = '<summary><span class="arw">▶</span>' + g.cat +
+                '<span class="cnt" data-cnt hidden>0</span></summary>';
+  g.list.forEach((p,pi) => {
+    const key = gi + "-" + pi;
+    const row = document.createElement("div");
+    row.className = "prod";
+    row.dataset.key = key;
+    row.innerHTML =
+      '<div class="n"><b>' + p.n + ' <em>' + p.u + '</em></b>' +
+        (p.t ? '<span class="flat">$' + fmt(p.r) + '　體驗包不打折</span>'
+             : '<span>$' + fmt(p.v) + ' <s>原價 $' + fmt(p.r) + '</s></span>') +
+      '</div>' +
+      '<div class="stepper"><button data-s="-1" aria-label="減少">−</button>' +
+      '<output>0</output><button data-s="1" aria-label="增加">＋</button></div>';
+    row.querySelectorAll("[data-s]").forEach(b => {
+      b.onclick = () => {
+        aQty[key] = Math.min(99, Math.max(0, (aQty[key]||0) + (+b.dataset.s)));
+        renderC();
+      };
+    });
+    d.appendChild(row);
+  });
+  addonsEl.appendChild(d);
+});
+
+function pick(){
+  const out = [];
+  GROUPS.forEach((g,gi) => g.list.forEach((p,pi) => {
+    const q = aQty[gi + "-" + pi] || 0;
+    if (q > 0) out.push({p, q});
+  }));
+  return out;
+}
+
+function renderC(){
+  let pay = 0, orig = 0, count = 0;
+
+  [...combosEl.children].forEach((el,i) => {
+    const q = cQty[i];
+    el.querySelector("output").textContent = q;
+    el.querySelector('[data-s="-1"]').disabled = q === 0;
+    el.classList.toggle("on", q > 0);
+    pay  += q * COMBOS[i].price;
+    orig += q * COMBOS[i].orig;
+    count += q;
+  });
+
+  [...addonsEl.children].forEach((d,gi) => {
+    let n = 0;
+    d.querySelectorAll(".prod").forEach(row => {
+      const [g,pi] = row.dataset.key.split("-").map(Number);
+      const p = GROUPS[g].list[pi];
+      const q = aQty[row.dataset.key] || 0;
+      row.querySelector("output").textContent = q;
+      row.querySelector('[data-s="-1"]').disabled = q === 0;
+      row.classList.toggle("on", q > 0);
+      n += q;
+      pay  += q * (p.t ? p.r : p.v);
+      orig += q * p.r;
+      count += q;
+    });
+    const c = d.querySelector("[data-cnt]");
+    c.textContent = n;
+    c.hidden = n === 0;
+  });
+
+  const num = document.getElementById("cNum");
+  num.innerHTML = '<i>$</i>' + fmt(pay);
+  num.disabled = pay === 0;
+  document.getElementById("cLab").textContent = count > 0 ? "應付總金額 · 共 " + count + " 件" : "應付總金額";
+  document.getElementById("cTap").textContent = pay > 0 ? "點金額複製" : "先選組合";
+  document.getElementById("cSave").hidden = pay === 0;
+  document.getElementById("cOrig").textContent = "$" + fmt(orig);
+  document.getElementById("cDiff").textContent = "$" + fmt(orig - pay);
+  document.getElementById("cCopy").disabled = pay === 0;
+  document.getElementById("cReset").disabled = pay === 0;
+  return {pay, orig};
+}
+
+document.getElementById("cNum").onclick = () => {
+  const {pay} = renderC();
+  if (pay) copy(String(pay), "已複製 " + fmt(pay));
+};
+document.getElementById("cReset").onclick = () => {
+  cQty = [0,0];
+  Object.keys(aQty).forEach(k => aQty[k] = 0);
+  renderC();
+};
+
+document.getElementById("cCopy").onclick = () => {
+  const {pay, orig} = renderC();
+  if (!pay) return;
+  const nick = document.getElementById("nickname").value.trim() || "寶寶";
+  const L = [];
+  L.push(nick + " 💕");
+  L.push("以下是你購買的方案～");
+  L.push("");
+  L.push("🥮 2026中秋組合｜9/17（四）－10/5（一）");
+  cQty.forEach((q,i) => {
+    if (!q) return;
+    const c = COMBOS[i];
+    L.push("");
+    L.push("【" + c.label + "】× " + q);
+    L.push("　" + c.items);
+    L.push("　送 " + c.gift);
+    L.push("　✨原價 $" + fmt(c.orig * q) + " → VIP $" + fmt(c.price * q));
+  });
+  const add = pick();
+  if (add.length){
+    L.push("");
+    L.push("✨加購（VIP價）");
+    add.forEach(({p,q}) => {
+      const unit = p.t ? p.r : p.v;
+      L.push("・" + p.n + " " + p.u + " × " + q + "　$" + fmt(unit * q) +
+             (p.t ? "" : "（原價 $" + fmt(p.r * q) + "）"));
+    });
+  }
+  L.push("");
+  L.push("－－－－－－－－");
+  L.push("💗 應付總金額 $" + fmt(pay));
+  L.push("🛍 商品原價共 $" + fmt(orig));
+  L.push("💰 總共省下 $" + fmt(orig - pay));
+  copy(L.join("\n"), "方案已複製");
+};
+
+/* ---- 團隊版 ---- */
+const levelsEl = document.getElementById("levels");
+LEVELS.forEach((lv,i) => {
+  const b = document.createElement("button");
+  b.className = "level";
+  b.textContent = lv.name;
+  b.setAttribute("aria-pressed", i === 0);
+  b.onclick = () => { cur = i; renderT(); };
+  levelsEl.appendChild(b);
+});
+
+const earnsEl = document.getElementById("earns");
+COMBOS.forEach(c => {
+  const el = document.createElement("div");
+  el.className = "earn " + c.cls;
+  el.innerHTML = '<div class="info"><b>' + c.label + '</b><span data-line></span></div>' +
+                 '<button class="val" data-earn><em>你賺</em><b>$0</b></button>';
+  earnsEl.appendChild(el);
+});
+
+const rowsEl = document.getElementById("rows");
+COMBOS.forEach((c,i) => {
+  const el = document.createElement("div");
+  el.className = "row " + c.cls;
+  el.innerHTML = '<div class="info"><b>' + c.label + '</b><span data-unit></span></div>' +
+    '<div class="stepper"><button data-s="-1" aria-label="減少">−</button><output>0</output>' +
+    '<button data-s="1" aria-label="增加">＋</button></div>';
+  el.querySelectorAll("[data-s]").forEach(b => {
+    b.onclick = () => { tQty[i] = Math.min(99, Math.max(0, tQty[i] + (+b.dataset.s))); renderT(); };
+  });
+  rowsEl.appendChild(el);
+});
+
+const tTotal = () => tQty.reduce((s,q,i) => s + q * LEVELS[cur].cost[i], 0);
+const tEarn  = () => tQty.reduce((s,q,i) => s + q * (COMBOS[i].price - LEVELS[cur].cost[i]), 0);
+
+function renderT(){
+  [...levelsEl.children].forEach((b,i) => b.setAttribute("aria-pressed", i === cur));
+  [...earnsEl.children].forEach((el,i) => {
+    const cost = LEVELS[cur].cost[i], earn = COMBOS[i].price - cost;
+    el.querySelector("[data-line]").textContent = "客人付 $" + fmt(COMBOS[i].price) + "　你的成本 $" + fmt(cost);
+    const btn = el.querySelector("[data-earn]");
+    btn.querySelector("b").textContent = "$" + fmt(earn);
+    btn.onclick = () => copy(String(earn), "已複製 " + fmt(earn));
+  });
+  [...rowsEl.children].forEach((el,i) => {
+    const unit = LEVELS[cur].cost[i], q = tQty[i];
+    el.querySelector("output").textContent = q;
+    el.querySelector("[data-unit]").textContent =
+      q > 0 ? "單組 $" + fmt(unit) + "　小計 $" + fmt(unit*q) : "單組 $" + fmt(unit);
+    el.classList.toggle("zero", q === 0);
+    el.querySelector('[data-s="-1"]').disabled = q === 0;
+  });
+  const t = tTotal(), sets = tQty[0] + tQty[1];
+  const num = document.getElementById("tNum");
+  num.innerHTML = '<i>$</i>' + fmt(t);
+  num.disabled = t === 0;
+  document.getElementById("tLab").textContent = sets ? "應付總金額 · 共 " + sets + " 組" : "應付總金額";
+  document.getElementById("tTap").textContent = t ? "點金額複製　·　這批你賺 $" + fmt(tEarn()) : "先選組數";
+  document.getElementById("tCopy").disabled = t === 0;
+  document.getElementById("tReset").disabled = t === 0;
+}
+document.getElementById("tNum").onclick = () => { const t = tTotal(); if (t) copy(String(t), "已複製 " + fmt(t)); };
+document.getElementById("tReset").onclick = () => { tQty = [0,0]; renderT(); };
+document.getElementById("tCopy").onclick = () => {
+  const t = tTotal();
+  if (!t) return;
+  const L = [LEVELS[cur].name];
+  tQty.forEach((q,i) => { if (q) L.push(COMBOS[i].label + " " + q + " 組　$" + fmt(q * LEVELS[cur].cost[i])); });
+  L.push("合計 $" + fmt(t));
+  copy(L.join("\n"), "已複製明細");
+};
+
+/* ---- 複製 ---- */
+function copy(text, msg){
+  if (navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(() => toast(msg)).catch(() => fallback(text, msg));
+  } else fallback(text, msg);
+}
+function fallback(text, msg){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); toast(msg); }
+  catch(e){ toast("複製失敗，請長按文字手動選取"); }
+  ta.remove();
+}
+let tm;
+function toast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("on");
+  clearTimeout(tm);
+  tm = setTimeout(() => el.classList.remove("on"), 1500);
+}
+
+renderC();
+renderT();
+</script>
+</body>
+</html>
